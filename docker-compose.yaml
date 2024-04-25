@@ -1,0 +1,31 @@
+version: '3.7'
+services:
+  bridge:
+    image: "ghcr.io/robocup-logistics/rcll-mqtt-bridge:master"
+    container_name: rcll-mqtt-bridge
+    network_mode: "host"
+    restart: "on-failure"
+    environment:
+      - BROKER=tcp://localhost:1883
+      - REFBOX=localhost
+      - TEAM=GRIPS
+      - KEY=randomkey
+
+  mosquitto:
+    image: eclipse-mosquitto:latest
+    container_name: mosquitto
+    ports:
+      - "1883:1883"
+      - "9001:9001"
+    volumes:
+      - "./config/mosquitto.conf:/mosquitto/config/mosquitto.conf"
+      - "./data:/mosquitto/data"
+      - "./log:/mosquitto/log"
+    restart: unless-stopped
+
+
+
+
+
+
+
