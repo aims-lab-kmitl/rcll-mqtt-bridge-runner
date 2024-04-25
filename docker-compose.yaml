@@ -13,7 +13,7 @@ services:
 
   mosquitto:
     image: eclipse-mosquitto:latest
-    container_name: mosquitto
+    container_name: rcll-mqtt-broker
     ports:
       - "1883:1883"
       - "9001:9001"
